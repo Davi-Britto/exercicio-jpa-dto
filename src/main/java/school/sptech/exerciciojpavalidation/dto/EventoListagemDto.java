@@ -1,31 +1,23 @@
-package school.sptech.exerciciojpavalidation.entity;
+package school.sptech.exerciciojpavalidation.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 
-@Entity
-public class Evento {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class EventoListagemDto {
+    private int id;
     private String nome;
     private String local;
     private LocalDate dataEvento;
     private boolean gratuito;
     private boolean cancelado;
-    @CreationTimestamp
     private LocalDate dataPublicacao;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -77,15 +69,9 @@ public class Evento {
         this.dataPublicacao = dataPublicacao;
     }
 
-    public String getStatus(){
-        LocalDate hoje = LocalDate.now();
-        if(hoje.isBefore(dataEvento) && !isCancelado()){
-            return "Aberto";
-        } else if (hoje.isAfter(dataEvento) && !isCancelado()) {
-            return "Finalizado";
-        } else if (isCancelado()){
-            return "Cancelado";
-        }
-        return null;
-    }
+//    public String getStatus(){
+//        if(!isCancelado()){
+//            return "Aberto";
+//        }
+//    }
 }
